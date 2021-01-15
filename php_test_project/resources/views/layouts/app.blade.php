@@ -28,14 +28,29 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
+                {{-- @if (Auth::check())
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        Home
+                    </a>
+                    <a class="navbar-brand" href="{{ url('/product') }}">
+                        Product
+                    </a>
+                @endif --}}
                 @if (Auth::check())
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    Home
-                </a>
-                <a class="navbar-brand" href="{{ url('/product') }}">
-                    Product
-                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {{ Request::url() == url('/home') ? 'active' : null }}">
+                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                        </li>
+                        <li  class="nav-item {{ Request::url() == url('/product') ? 'active' : null }}">
+                            <a class="nav-link" href="{{ url('/product') }}">Product</a>
+                        </li>
+                    </ul>
+                </div>
                 @endif
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
